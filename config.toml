@@ -1,7 +1,7 @@
 # Site settings
 baseURL = "https://valeriapavero.netlify.app/"
 languageCode = "en-us"
-title = "Forty"
+title = "Valeria's Portfolio Website"
 theme = "forty"
 
 # Enter your tracking code to enable Google Analytics
@@ -37,7 +37,7 @@ disqusShortname = ""
 
   # Navigation Section
   [params.navigation]
-    title = "Valeria Pavero"
+    title = "Valeria's Portfolio Website"
     subtitle = "By HTML5 Up"
     menu = "Menu"
     # Optional logo as brand stored in img/
@@ -94,7 +94,7 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "About me"
       subtitle = "Valeria Pavero - MFA2021"
-      image = "IMG_9193.JPG"
+      image = "pic01.jpg"
       url = "blogs/about_me"
 
     [[params.tiles.showcase]]
