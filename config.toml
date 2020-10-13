@@ -94,8 +94,8 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "About me"
       subtitle = "Valeria - London Business School MFA2021"
-      image = "picture_project1.jpg"
-      url = "blogs/about_me"
+      image = "projects/picture_project1.jpg"
+      url = "projects/about_me"
 
     [[params.tiles.showcase]]
       title = "Tempus"
