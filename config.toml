@@ -189,6 +189,16 @@ disqusShortname = ""
     enable = true
     copyright = "Company Name"
 
+    [[params.footer.social]]
+      icon = "fa-github"
+      url= "https://www.github.com"
+      label = "GitHub"
+
+    [[params.footer.social]]
+      icon = "fa-linkedin"
+      url= "https://www.linkedin.com/in/valeriapavero/"
+      label = "LinkedIn"
+      
     # Uses font awesome icons
     [[params.footer.social]]
       #icon = "fa-twitter"
@@ -205,15 +215,6 @@ disqusShortname = ""
       #url= "https://www.instagram.com"
       #label = "Instagram"
     
-    [[params.footer.social]]
-      icon = "fa-github"
-      url= "https://www.github.com"
-      label = "GitHub"
-
-    [[params.footer.social]]
-      icon = "fa-linkedin"
-      url= "https://www.linkedin.com/in/valeriapavero/"
-      label = "LinkedIn"
 
     [[params.footer.quicklinks]]
       text = "Design: "
