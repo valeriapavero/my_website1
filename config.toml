@@ -37,7 +37,7 @@ disqusShortname = ""
 
   # Navigation Section
   [params.navigation]
-    title = "Forty"
+    title = "Valeria Pavero"
     subtitle = "By HTML5 Up"
     menu = "Menu"
     # Optional logo as brand stored in img/
@@ -92,10 +92,10 @@ disqusShortname = ""
     # Display your showcases here.
     
     [[params.tiles.showcase]]
-      title = "Aliquam"
-      subtitle = "Ipsum Dolor Sit Amet"
-      image = "pic01.jpg"
-      url = "blogs/aliquam"
+      title = "About me"
+      subtitle = "Valeria Pavero - MFA2021"
+      image = "IMG_9193.JPG"
+      url = "blogs/about_me"
 
     [[params.tiles.showcase]]
       title = "Tempus"
