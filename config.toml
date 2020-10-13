@@ -38,7 +38,7 @@ disqusShortname = ""
   # Navigation Section
   [params.navigation]
     title = "Valeria's Portfolio Website"
-    subtitle = "By HTML5 Up"
+    subtitle = "MFA 2021"
     menu = "Menu"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
@@ -93,8 +93,8 @@ disqusShortname = ""
     
     [[params.tiles.showcase]]
       title = "About me"
-      subtitle = "Valeria Pavero - MFA2021"
-      image = "pic01.jpg"
+      subtitle = "Valeria"
+      image = "pic_P1.jpg"
       url = "blogs/about_me"
 
     [[params.tiles.showcase]]
