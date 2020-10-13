@@ -40,8 +40,7 @@ disqusShortname = ""
     title = "Valeria's Portfolio Website"
     subtitle = "MFA 2021"
     menu = "Menu"
-    image = "blogs/LBS.jpg"
-    logo = "blogs/LBS.jpg"
+    image = "LBS.jpg"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
 
