@@ -41,6 +41,7 @@ disqusShortname = ""
     subtitle = "MFA 2021"
     menu = "Menu"
     image = "blogs/LBS.jpg"
+    logo = "blogs/LBS.jpg"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
 
