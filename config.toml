@@ -28,7 +28,7 @@ disqusShortname = ""
   favicon    = "favicon.ico"
 
   # Just a custom image variable, please define it in .md files for content.
-  image = "blogs/LBS.jpg"
+  image = ""
 
   # 404 error customization
   [params.error404]
@@ -40,7 +40,6 @@ disqusShortname = ""
     title = "Valeria's Portfolio Website"
     subtitle = "MFA 2021"
     menu = "Menu"
-    image = "LBS.jpg"
     # Optional logo as brand stored in img/
     # logo = "logo.png"
 
@@ -85,7 +84,7 @@ disqusShortname = ""
     title = "Hi, my name is Valeria"
     subtitle = "THIS IS MY PORTFOLIO WEBSITE."
     buttonText = "Get Started"
-
+    image = "LBS.jpg"
 
   # Tiles Section
   [params.tiles]
