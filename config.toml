@@ -83,8 +83,8 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Valeria"
-    subtitle = "THIS IS MY PORTFOLIO WEBSITE"
-    buttonText = "Check it out!"    
+    subtitle = "THIS IS MY PORTFOLIO WEBSITE."
+    buttonText = "Check it out"    
     #image = "banner.jpg"
 
   # Tiles Section
