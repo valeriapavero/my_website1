@@ -1,14 +1,15 @@
----
-site: blogdown:::blogdown_site
-title: "About Me"
-date: "`r Sys.Date()`"
-output: html_document
-image: pic005.jpg
----
 
-title = "COVID-19 Death Rate Analysis"
-subtitle = "A little bit more about myself."
-image = "projects/Pic_005.jpg"
+---
+categories:
+- ""
+- ""
+date: "2017-10-31T22:26:13-05:00"
+draft: false
+image: Pic_005.jpg
+keywords: ""
+slug: about_me
+title: About Me
+---
 
 > My name is Valeria Pavero and I was born and raised in Milan, Italy. I am of Swiss and Italian descent and completed my pre-university qualifications at the German School of Milan gaining a double diploma with the German Abitur and Italian Maturita Scientifica. 
 

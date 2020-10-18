@@ -76,7 +76,6 @@ disqusShortname = ""
       name = "Log In"
       url = "#"
 
-
   # Banner section
   [params.banner]
     # To change the background image on the homepage banner, replace 'banner.jpg' in
