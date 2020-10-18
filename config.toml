@@ -98,13 +98,13 @@ disqusShortname = ""
 
     [[params.tiles.showcase]]
       title = "Gapminder Revisited"
-      subtitle = "Feugiat Amet Tempus"
+      subtitle = "Analysing the Gapminder Data Set (Group 18)"
       image = "projects/Pic_007.jpg"
       url = "projects/gapminder"
 
     [[params.tiles.showcase]]
       title = "COVID-19 Death Rate Analysis"
-      subtitle = "Group 18 - CDC COVID-19 Public Use Data"
+      subtitle = "CDC COVID-19 Public Use Data (Group 18)"
       image = "projects/Pic_006.jpg"
       url = "projects/COVID19"
 
