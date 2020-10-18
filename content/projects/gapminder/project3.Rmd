@@ -1,17 +1,19 @@
-
 ---
-categories:
-- ""
-- ""
-draft: false
-output: html_document
-image: Pic_005.jpg
-keywords: ""
-slug: about_me
 title: Gapminder Revisited
+output: html_document
 ------
 
 ```{r, get_data, cache=TRUE}
+library(tidyverse)  
+library(mosaic)
+library(ggthemes)
+library(lubridate)
+library(here)
+library(skimr)
+library(janitor)
+library(httr)
+library(readxl)
+library(vroom)
 
 # load gapminder HIV data
 hiv <- read_csv(here::here("data","adults_with_hiv_percent_age_15_49.csv"))
@@ -191,7 +193,7 @@ mortality_change <- wb_hiv_lifeExp_final %>%
 
 > Is there a relationship between primary school enrollment and fertility rate?
 
-```{r}
+```{r, primEnrll_fertility}
 
 primEnrll_fertility <- ggplot(
   data=wb_hiv_lifeExp_final,
