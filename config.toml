@@ -84,7 +84,7 @@ disqusShortname = ""
     # the 'static/img' folder.
     title = "Hi, my name is Valeria"
     subtitle = "THIS IS MY PORTFOLIO WEBSITE."
-    buttonText = "Get Started"
+    buttonText = "Check it out"
     #image = "banner.jpg"
 
   # Tiles Section
