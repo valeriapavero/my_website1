@@ -104,7 +104,7 @@ disqusShortname = ""
 
     [[params.tiles.showcase]]
       title = "COVID-19 Death Rate Analysis"
-      subtitle = "CDC COVID-19 Public Use Data"
+      subtitle = "Group 18 - CDC COVID-19 Public Use Data"
       image = "projects/Pic_006.jpg"
       url = "projects/COVID19"
 

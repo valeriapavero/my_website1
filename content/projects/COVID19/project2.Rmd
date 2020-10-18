@@ -3,20 +3,25 @@ title: "Project2"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 CDC COVID-19 Public Use Data
 
 [CDC Covid-19 Case Surveillance Data]
 
 ```{r, cache=TRUE}
+library(tidyverse)  
+library(mosaic)
+library(ggthemes)
+library(lubridate)
+library(here)
+library(skimr)
+library(janitor)
+library(httr)
+library(readxl)
+library(vroom)
 
 url <- "https://data.cdc.gov/api/views/vbim-akqf/rows.csv?accessType=DOWNLOAD"
 
-covid_data <- vroom::vroom(url)%>% 
-  
+covid_data <- read_csv(url)%>% 
   # If vroom::vroom(url) doesn't work, use read_csv(url)
   clean_names()
 
@@ -25,6 +30,7 @@ covid_data <- vroom::vroom(url)%>%
 
 ```{r covid_challenge, echo=FALSE, out.width="100%"}
 knitr::include_graphics(here::here("images", "covid_death_rate_comorbidities.png"), error = FALSE)
+
 knitr::include_graphics(here::here("images", "covid_death_rate_icu.png"), error = FALSE)
 ```
 

@@ -1,0 +1,209 @@
+
+---
+categories:
+- ""
+- ""
+draft: false
+output: html_document
+image: Pic_005.jpg
+keywords: ""
+slug: about_me
+title: Gapminder Revisited
+------
+
+```{r, get_data, cache=TRUE}
+
+# load gapminder HIV data
+hiv <- read_csv(here::here("data","adults_with_hiv_percent_age_15_49.csv"))
+life_expectancy <- read_csv(here::here("data","life_expectancy_years.csv"))
+
+# get World bank data using wbstats
+indicators <- c("SP.DYN.TFRT.IN","SE.PRM.NENR", "SH.DYN.MORT", "NY.GDP.PCAP.KD")
+
+
+library(wbstats)
+
+#worldbank_data <- wb_data(country="countries_only", #countries only- no aggregates like Latin America, Europe, etc.
+                          #indicator = indicators, 
+                          #start_date = 1960, 
+                          #end_date = 2016)
+worldbank_data <- read_csv(here::here("data","worldbank_data.csv"))
+# get a dataframe of information regarding countries, indicators, sources, regions, indicator topics, lending types, income levels,  from the World Bank API 
+countries <-  wbstats::wb_cachelist$countries
+
+```
+
+
+
+```{r, gapminder}
+
+library(gapminder)
+library(countrycode)
+
+#Tidy data for combining data frames
+hiv_tidy <- hiv %>% 
+  pivot_longer(!country, names_to = "year", values_to = "hiv")
+
+life_expectancy_tidy <- life_expectancy %>% 
+  pivot_longer(!country, names_to = "year", values_to = "life_expectancy")
+
+worldbank_tidy <- worldbank_data %>% 
+  mutate(year = as.character(date)) %>% 
+  select(iso3c, country, year, SP.DYN.TFRT.IN,SE.PRM.NENR, SH.DYN.MORT, NY.GDP.PCAP.KD)
+
+countries_tidy <- countries %>% 
+  select(iso3c, country, capital_city, region, income_level, lending_type)
+
+#iso3c country codes for HIV and lifeExp data
+hiv_lifeExp <- full_join(life_expectancy_tidy, hiv_tidy, by = c("country","year"))
+
+country_code <- hiv_lifeExp %>% 
+  select(country) %>% 
+  distinct() %>% 
+  pull()
+
+countrycodes <- country_code %>% 
+  countrycode(
+    origin = "country.name",
+    destination = "iso3c")
+
+countrycode_match <- tibble(
+  country = country_code, 
+  iso3c = countrycodes)
+
+hiv_lifeExp_tidy <- left_join(hiv_lifeExp, countrycode_match, by = "country")
+  
+#Check for primary keys before joining
+hiv_lifeExp_tidy %>% 
+  count(iso3c, year) %>% 
+  filter(n>1) #0 rows means suitable as primary keys
+
+
+worldbank_tidy %>% 
+  count(iso3c, year) %>% 
+  filter(n>1)
+
+#Joining dataframes
+wb_hiv_lifeExp <- full_join(worldbank_tidy, hiv_lifeExp_tidy, by = c("iso3c","year"))
+wb_hiv_lifeExp_countries <- left_join(wb_hiv_lifeExp, countries_tidy, by = "iso3c")
+
+#Tidy final data frame
+wb_hiv_lifeExp_final <- wb_hiv_lifeExp_countries %>% 
+  select(-country.x,-country.y) %>% 
+  mutate(year = as.Date(year, format = "%Y"),
+         year = year(year)) %>% 
+  filter(year %in% c(1960:2016)) %>% 
+  rename(fertility_rate = SP.DYN.TFRT.IN,
+         school_enrol = SE.PRM.NENR,
+         mortality_rate = SH.DYN.MORT,
+         gdpPercap = NY.GDP.PCAP.KD)
+
+glimpse(wb_hiv_lifeExp_final)
+
+```
+
+
+> What is the relationship between HIV prevalence and life expectancy? 
+
+```{r, hiv_lifeExp_relationship}
+#Plot the data
+
+hiv_lifeExp_relationship <- ggplot(
+  data = wb_hiv_lifeExp_final,
+  mapping=aes(
+    x=hiv,
+    y=life_expectancy, color = hiv))+
+    geom_point()+
+  geom_smooth()+
+  labs(x = "HIV Prevalence",
+  y = "Life Expectancy", color="HIV")+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 100))+
+  scale_x_log10()+
+  facet_wrap(~region)
+
+hiv_lifeExp_relationship 
+
+```
+
+
+> What is the relationship between fertility rate and GDP per capita? 
+
+```{r fertilityGdp_relationship}
+
+fertilityGdp_relationship <- ggplot(
+  data=wb_hiv_lifeExp_final,
+  mapping=aes(
+    x=gdpPercap,
+    y=fertility_rate, color = fertility_rate))+
+    geom_point()+
+  labs(x ="GDP per Capita",
+  y = "Fertility Rate", color="Fertility Rate")+
+  geom_smooth()+
+  scale_x_log10()+
+  facet_wrap(~region)
+
+fertilityGdp_relationship
+  
+```
+
+> Which regions have the most observations with missing HIV data? 
+
+```{r Hiv_na}
+
+library(expss)
+
+Hiv_na <- wb_hiv_lifeExp_final %>% 
+ mutate(count_na = sum(is.na(hiv))) %>% 
+  group_by(region) 
+
+
+HIV_NAs <- ggplot(
+  data=Hiv_na,
+  mapping=aes(
+    x=count_na, 
+    y=region))+
+    geom_col()+
+  labs(x ="Missing Observations",
+  y = "Region")
+
+HIV_NAs
+
+```
+
+> How has mortality rate for under 5 changed by region?
+
+```{r, eval=FALSE}
+
+mortality_change <- wb_hiv_lifeExp_final %>%
+  group_by(country) %>% 
+  mutate(year = as.Date(year, format = "%Y"),
+         year = year(year)) %>% 
+  mutate(mortality_rate2 = mortality_rate[year="2016"] - mortality_rate[year="1960"]) %>%
+  arrange(mortality_rate2) %>% 
+  head(5) 
+
+mortality_change <- wb_hiv_lifeExp_final %>%
+  group_by(country) %>% 
+  arrange(mortality_rate) %>% 
+  tail(5) 
+
+```
+
+> Is there a relationship between primary school enrollment and fertility rate?
+
+```{r}
+
+primEnrll_fertility <- ggplot(
+  data=wb_hiv_lifeExp_final,
+  mapping=aes(
+    x=school_enrol,
+    y=fertility_rate, color = fertility_rate))+
+    geom_point()+
+  labs(x ="Primary School Enrollment",
+  y = "Fertility Rate", color="Fertility Rate")+
+  geom_smooth()+
+  scale_x_log10()
+
+primEnrll_fertility
+
+```
