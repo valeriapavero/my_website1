@@ -100,7 +100,7 @@ disqusShortname = ""
       title = "Gapminder Revisited"
       subtitle = "Analysing the Gapminder Data Set"
       image = "projects/Pic_007.jpg"
-      url = "projects/gapminder"
+      url = "blogs/gapminder"
 
     [[params.tiles.showcase]]
       title = "COVID-19 Death Rate Analysis"
