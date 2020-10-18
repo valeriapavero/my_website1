@@ -1,0 +1,10 @@
+---
+title: "project4"
+output: html_document
+image: pic005.jpg
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
