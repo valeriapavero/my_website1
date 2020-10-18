@@ -46,19 +46,19 @@ disqusShortname = ""
 
     [[params.navigation.links]]
       name = "About me"
-      url = "projects/about_me"
+      url = "blogs/about_me"
       
     [[params.navigation.links]]
       name = "Resume"
-      url = "projects/resume"  
+      url = "blogs/resume"  
 
     [[params.navigation.links]]
       name = "COVID-19 Death Rate Analysis"
-      url = "projects/COVID19"
+      url = "blogs/COVID19"
 
     [[params.navigation.links]]
       name = "Gapminder Revisited"
-      url = "projects/gapminder"
+      url = "blogs/gapminder"
       
 
     # Add custom links here by uncommenting code below. To remove links just delete
@@ -95,26 +95,26 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "About me"
       subtitle = "Valeria Pavero - MFA2021"
-      image = "projects/Pic_001.jpg"
-      url = "projects/about_me"
+      image = "blogs/Pic_001.jpg"
+      url = "blogs/about_me"
 
     [[params.tiles.showcase]]
       title = "Gapminder Revisited"
       subtitle = "Analysing the Gapminder Data Set"
-      image = "projects/Pic_007.jpg"
-      url = "projects/gapminder"
+      image = "blogs/Pic_007.jpg"
+      url = "blogs/gapminder"
 
     [[params.tiles.showcase]]
       title = "COVID-19 Death Rate Analysis"
       subtitle = "CDC COVID-19 Public Use Data"
-      image = "projects/Pic_006.jpg"
-      url = "projects/COVID19"
+      image = "blogs/Pic_006.jpg"
+      url = "blogs/COVID19"
 
     [[params.tiles.showcase]]
       title = "Resume"
       subtitle = "Education and Work Experience"
-      image = "projects/Pic_004.jpg"
-      url = "projects/resume"
+      image = "blogs/Pic_004.jpg"
+      url = "blogs/resume"
 
     # You can make more showcases by copy and pasting the code above
 
