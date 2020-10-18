@@ -97,10 +97,10 @@ disqusShortname = ""
       url = "projects/about_me"
 
     [[params.tiles.showcase]]
-      title = "Tempus"
+      title = "Gapminder Revisited"
       subtitle = "Feugiat Amet Tempus"
-      image = "pic02.jpg"
-      url = "blogs/tempus"
+      image = "projects/Pic_007.jpg"
+      url = "projects/gapminder"
 
     [[params.tiles.showcase]]
       title = "COVID-19 Death Rate Analysis"
