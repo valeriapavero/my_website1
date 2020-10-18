@@ -94,7 +94,7 @@ disqusShortname = ""
       title = "About me"
       subtitle = "Valeria Pavero - MFA2021"
       image = "projects/Pic_001.jpg"
-      url = "projects/about_me"
+      url = "blogs/about_me"
 
     [[params.tiles.showcase]]
       title = "Gapminder Revisited"
@@ -106,13 +106,13 @@ disqusShortname = ""
       title = "COVID-19 Death Rate Analysis"
       subtitle = "CDC COVID-19 Public Use Data"
       image = "projects/Pic_006.jpg"
-      url = "projects/COVID19"
+      url = "blogs/COVID19"
 
     [[params.tiles.showcase]]
       title = "Resume"
       subtitle = "Education and Work Experience"
       image = "projects/Pic_004.jpg"
-      url = "projects/resume"
+      url = "blogs/resume"
 
     # You can make more showcases by copy and pasting the code above
 
