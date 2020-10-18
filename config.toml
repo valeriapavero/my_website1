@@ -83,7 +83,7 @@ disqusShortname = ""
     # To change the background image on the homepage banner, replace 'banner.jpg' in
     # the 'static/img' folder.
     title = "Hi, my name is Valeria"
-    subtitle = "THIS IS MY PORTFOLIO WEBSITE."
+    subtitle = "THIS IS MY PORTFOLIO WEBSITE"
     buttonText = "Check it out!"    
     #image = "banner.jpg"
 
@@ -181,7 +181,7 @@ disqusShortname = ""
 
     [[params.footer.social]]
       icon = "fa-github"
-      url= "https://www.github.com"
+      url= "https://github.com/valeriapavero/"
       label = "GitHub"
 
     [[params.footer.social]]
