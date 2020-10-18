@@ -81,10 +81,12 @@
 
 
 <div id="gapminder-revisited" class="section level1">
-<h1>Gapminder Data Set</h1>
+<h1>Load Gapminder Data Set</h1>
 <p>Load the necessary data <a href="https://projects.fivethirtyeight.com/trump-approval-ratings"> here</a></p>
-<pre class="r"><code> # Load data from Gapminder and World Bank Webstats.
+<pre class="r"><code># Load data from Gapminder and World Bank Webstats.
+
 hiv &lt;- read_csv(here::here(&#39;data&#39;,&#39;adults_with_hiv_percent_age_15_49.csv&#39;))
+
 life_expectancy &lt;- read_csv(here::here(&#39;data&#39;,&#39;life_expectancy_years.csv&#39;))
 
 indicators &lt;- c(&#39;SP.DYN.TFRT.IN&#39;,&#39;SE.PRM.NENR&#39;, &#39;SH.DYN.MORT&#39;, &#39;NY.GDP.PCAP.KD&#39;)
@@ -95,6 +97,75 @@ worldbank_data &lt;- read_csv(here::here(&#39;data&#39;,&#39;worldbank_data.csv&
 
 countries &lt;-  wbstats::wb_cachelist$countries
 </code></pre>
+
+<div id="tidy-the-date" class="section level2">
+<h2>Tidy the Data</h2>
+<pre class="r"><code>hiv_tidy &lt;- hiv %>% 
+  pivot_longer(!country, names_to = "year", values_to = "hiv")
+
+life_expectancy_tidy &lt;- life_expectancy %>% 
+  pivot_longer(!country, names_to = "year", values_to = "life_expectancy")
+
+worldbank_tidy &lt;- worldbank_data %>% 
+  mutate(year = as.character(date)) %>% 
+  select(iso3c, country, year, SP.DYN.TFRT.IN,SE.PRM.NENR, SH.DYN.MORT, NY.GDP.PCAP.KD)
+
+countries_tidy &lt;- countries %>% 
+  select(iso3c, country, capital_city, region, income_level, lending_type)
+
+#iso3c country codes for HIV and lifeExp data
+hiv_lifeExp &lt;- full_join(life_expectancy_tidy, hiv_tidy, by = c("country","year"))
+
+country_code &lt;- hiv_lifeExp %>% 
+  select(country) %>% 
+  distinct() %>% 
+  pull()
+
+countrycodes &lt;- country_code %>% 
+  countrycode(
+    origin = "country.name",
+    destination = "iso3c")
+
+countrycode_match &lt;- tibble(
+  country = country_code, 
+  iso3c = countrycodes)
+
+hiv_lifeExp_tidy &lt;- left_join(hiv_lifeExp, countrycode_match, by = "country")
+  
+#Check for primary keys before joining
+hiv_lifeExp_tidy %>% 
+  count(iso3c, year) %>% 
+  filter(n>1) #0 rows means suitable as primary keys
+
+
+worldbank_tidy %>% 
+  count(iso3c, year) %>% 
+  filter(n>1)
+
+#Joining dataframes
+wb_hiv_lifeExp &lt;- full_join(worldbank_tidy, hiv_lifeExp_tidy, by = c("iso3c","year"))
+wb_hiv_lifeExp_countries &lt;- left_join(wb_hiv_lifeExp, countries_tidy, by = "iso3c")
+
+#Tidy final data frame
+wb_hiv_lifeExp_final &lt;- wb_hiv_lifeExp_countries %>% 
+  select(-country.x,-country.y) %>% 
+  mutate(year = as.Date(year, format = "%Y"),
+         year = year(year)) %>% 
+  filter(year %in% c(1960:2016)) %>% 
+  rename(fertility_rate = SP.DYN.TFRT.IN,
+         school_enrol = SE.PRM.NENR,
+         mortality_rate = SH.DYN.MORT,
+         gdpPercap = NY.GDP.PCAP.KD)
+
+glimpse(wb_hiv_lifeExp_final)
+
+</code></pre>
+</div>
+
+
+
+
+
 </div>
 
                         </div>
