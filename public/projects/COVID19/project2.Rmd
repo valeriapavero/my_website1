@@ -1,5 +1,5 @@
 ---
-title: "Project2"
+title: "COVID-19 Death Rate Analysis"
 output: html_document
 ---
 
