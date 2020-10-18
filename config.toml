@@ -83,7 +83,7 @@ disqusShortname = ""
     title = "Hi, my name is Valeria"
     subtitle = "THIS IS MY PORTFOLIO WEBSITE."
     buttonText = "Get Started"
-    image = "banner.jpg"
+    image = "projects/banner.jpg"
 
   # Tiles Section
   [params.tiles]
