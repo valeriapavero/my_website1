@@ -94,7 +94,7 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "About me"
       subtitle = "Valeria Pavero - MFA2021"
-      image = "projects/pic_project1.jpg"
+      image = "projects/Pic_001.jpg"
       url = "projects/about_me"
 
     [[params.tiles.showcase]]
@@ -112,7 +112,7 @@ disqusShortname = ""
     [[params.tiles.showcase]]
       title = "Resume"
       subtitle = "Education and Work Experience"
-      image = "projects/pic_project4.jpg"
+      image = "projects/Pic_004.jpg"
       url = "projects/resume"
 
     [[params.tiles.showcase]]
