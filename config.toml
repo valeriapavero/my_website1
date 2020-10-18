@@ -43,21 +43,23 @@ disqusShortname = ""
     # Optional logo as brand stored in img/
     # logo = "logo.png"
 
-    [[params.navigation.links]]
-      name = "Home"
-      url = "#"
 
     [[params.navigation.links]]
-      name = "Blogs"
-      url = "blogs"
+      name = "About me"
+      url = "projects/about_me"
+      
+    [[params.navigation.links]]
+      name = "Resume"
+      url = "projects/resume"  
 
     [[params.navigation.links]]
-      name = "Generic Blog"
-      url = "blogs/ipsum"
+      name = "COVID-19 Death Rate Analysis"
+      url = "projects/COVID19"
 
     [[params.navigation.links]]
-      name = "Elements"
-      url = "elements.html"
+      name = "Gapminder Revisited"
+      url = "projects/gapminder"
+      
 
     # Add custom links here by uncommenting code below. To remove links just delete
     # the [[params.navigation.links]] map associated with that link. Copy and paste
@@ -83,7 +85,7 @@ disqusShortname = ""
     title = "Hi, my name is Valeria"
     subtitle = "THIS IS MY PORTFOLIO WEBSITE."
     buttonText = "Get Started"
-    image = "projects/banner.jpg"
+    #image = "banner.jpg"
 
   # Tiles Section
   [params.tiles]
@@ -175,7 +177,7 @@ disqusShortname = ""
   # Footer section
   [params.footer]
     enable = true
-    copyright = "Company Name"
+    copyright = "Valeria Pavero, MFA2021"
 
     [[params.footer.social]]
       icon = "fa-github"
