@@ -104,10 +104,10 @@ disqusShortname = ""
       url = "blogs/tempus"
 
     [[params.tiles.showcase]]
-      title = "Magna"
-      subtitle = "Lorem Etiam Nullam"
-      image = "pic03.jpg"
-      url = "blogs/magna"
+      title = "COVID-19 Death Rate Analysis"
+      subtitle = "CDC COVID-19 Public Use Data"
+      image = "projects/Pic_006.jpg"
+      url = "projects/COVID19"
 
     [[params.tiles.showcase]]
       title = "Resume"
