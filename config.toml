@@ -60,6 +60,9 @@ disqusShortname = ""
       name = "Gapminder Revisited"
       url = "blogs/gapminder"
       
+    [[params.navigation.links]]
+      name = "Trump's Approval Rate"     
+      url = "blogs/trump"
 
     # Add custom links here by uncommenting code below. To remove links just delete
     # the [[params.navigation.links]] map associated with that link. Copy and paste
@@ -111,7 +114,7 @@ disqusShortname = ""
       url = "blogs/COVID19"
 
 [[params.tiles.showcase]]
-      title = "Trump Approval Rate"
+      title = "Trump's Approval Rate"
       subtitle = "Trump's Approval Margins over Time"
       image = "blogs/Pic_008.jpg"
       url = "blogs/Trump"
