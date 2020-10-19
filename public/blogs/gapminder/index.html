@@ -81,8 +81,9 @@
 
 
 <div id="gapminder-revisited" class="section level1">
-<h1>Load Gapminder Data Set</h1>
-<p>Load the necessary data <a href="https://projects.fivethirtyeight.com/trump-approval-ratings"> here</a></p>
+<h1>Load the Gapminder Data Set</h1>
+<p>Load the necessary data <a href=" gapminder package. That data frame contains just six columns from the larger [data in Gapminder World](https://www.gapminder.org/data/"> here.</a></p>
+
 <pre class="r"><code># Load data from Gapminder and World Bank Webstats.
 
 hiv &lt;- read_csv(here::here(&#39;data&#39;,&#39;adults_with_hiv_percent_age_15_49.csv&#39;))
@@ -137,7 +138,6 @@ hiv_lifeExp_tidy %>%
   count(iso3c, year) %>% 
   filter(n>1) #0 rows means suitable as primary keys
 
-
 worldbank_tidy %>% 
   count(iso3c, year) %>% 
   filter(n>1)
@@ -160,6 +160,45 @@ wb_hiv_lifeExp_final &lt;- wb_hiv_lifeExp_countries %>%
 glimpse(wb_hiv_lifeExp_final)
 
 </code></pre>
+</div>
+
+<div id="create-a-plot" class="section level3">
+<p> What is the relationship between HIV prevalence and life expectancy? </p>
+<pre class="r"><code>hiv_lifeExp_relationship &lt;- ggplot(
+  data = wb_hiv_lifeExp_final,
+  mapping=aes(
+    x=hiv,
+    y=life_expectancy, color = hiv))+
+    geom_point()+
+  geom_smooth()+
+  labs(x = "HIV Prevalence",
+  y = "Life Expectancy", color="HIV")+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 100))+
+  scale_x_log10()+
+  facet_wrap(~region)
+
+hiv_lifeExp_relationship 
+</code></pre>
+ <span class="image main"><img src="/img/blogs/pic10.png" alt="" /></span>
+</div>
+
+<div id="create-a-plot" class="section level3">
+<p> What is the relationship between fertility rate and GDP per capita? </p>
+<pre class="r"><code>fertilityGdp_relationship &lt;- ggplot(
+  data=wb_hiv_lifeExp_final,
+  mapping=aes(
+    x=gdpPercap,
+    y=fertility_rate, color = fertility_rate))+
+    geom_point()+
+  labs(x ="GDP per Capita",
+  y = "Fertility Rate", color="Fertility Rate")+
+  geom_smooth()+
+  scale_x_log10()+
+  facet_wrap(~region)
+
+fertilityGdp_relationship
+</code></pre>
+ <span class="image main"><img src="/img/blogs/Trump2.png" alt="" /></span>
 </div>
 
 
