@@ -93,25 +93,6 @@ worldbank_data &lt;- read_csv(here::here(&#39;data&#39;,&#39;worldbank_data.csv&
 
 countries &lt;-  wbstats::wb_cachelist$countries
 </code></pre>
-Rows: 12,369
-Columns: 13
-$ iso3c           &lt;chr&lt; "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW"…
-$ year            &lt;dbl&lt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981,…
-$ fertility_rate  &lt;dbl&lt; 4.820, 4.655, 4.471, 4.271, 4.059, 3.842, 3.625, 3.417, 3.226, 3.054, 2.908, 2.788, 2.691, 2.613, 2.552, 2.506, 2.472, 2.446, 2.425…
-$ school_enrol    &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ mortality_rate  &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ gdpPercap       &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 15669.62, 18427.61, 22134.0…
-$ life_expectancy &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ hiv             &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-$ country         &lt;chr&lt; "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Arub…
-$ capital_city    &lt;chr&lt; "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oran…
-$ region          &lt;chr&lt; "Latin America & Caribbean", "Latin America & Caribbean", "Latin America & Caribbean", "Latin America & Caribbean", "Latin America …
-$ income_level    &lt;chr&lt; "High income", "High income", "High income", "High income", "High income", "High income", "High income", "High income", "High incom…
-$ lending_type    &lt;chr&lt; "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not …
-
-
-
-
 
 <div id="tidy-the-date" class="section level2">
 <h2>Tidy the Data</h2>
@@ -171,10 +152,25 @@ wb_hiv_lifeExp_final &lt;- wb_hiv_lifeExp_countries %>%
          mortality_rate = SH.DYN.MORT,
          gdpPercap = NY.GDP.PCAP.KD)
 
-glimpse(wb_hiv_lifeExp_final)
-
+glimpse(wb_hiv_lifeExp_final)</code>
+</pre><pre><code>##Rows: 12,369
+## Columns: 13
+## $ iso3c           &lt;chr&lt; "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW"…
+## $ year            &lt;dbl&lt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981,…
+## $ fertility_rate  &lt;dbl&lt; 4.820, 4.655, 4.471, 4.271, 4.059, 3.842, 3.625, 3.417, 3.226, 3.054, 2.908, 2.788, 2.691, 2.613, 2.552, 2.506, 2.472, 2.446, 2.425…
+## $ school_enrol    &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ mortality_rate  &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ gdpPercap       &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 15669.62, 18427.61, 22134.0…
+## $ life_expectancy &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ hiv             &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+## $ country         &lt;chr&lt; "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Arub…
+## $ capital_city    &lt;chr&lt; "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oran…
+## $ region          &lt;chr&lt; "Latin America & Caribbean", "Latin America & Caribbean", "Latin America & Caribbean", "Latin America & Caribbean", "Latin America …
+## $ income_level    &lt;chr&lt; "High income", "High income", "High income", "High income", "High income", "High income", "High income", "High income", "High incom…
+## $ lending_type    &lt;chr&lt; "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not …
 </code></pre>
-</div>
+
+
 
 <div id="create-a-plot" class="section level3">
 <p> What is the relationship between HIV prevalence and life expectancy? </p>
@@ -193,6 +189,8 @@ glimpse(wb_hiv_lifeExp_final)
 
 hiv_lifeExp_relationship 
 </code></pre>
+<span class="image main"><img src="/img/gpmd1.jpg" alt="" /></span>
+
 </div>
 
 <div id="create-a-plot" class="section level3">
@@ -211,7 +209,6 @@ hiv_lifeExp_relationship
 
 fertilityGdp_relationship
 </code></pre>
-</div>
 
 <div id="create-a-plot" class="section level3">
 <p> What is the relationship between HIV prevalence and life expectancy? </p>
@@ -230,7 +227,6 @@ fertilityGdp_relationship
 
 hiv_lifeExp_relationship 
 </code></pre>
-</div>
 
 <div id="create-a-plot" class="section level3">
 <p> Which regions have the most observations with missing HIV data?  </p>
@@ -249,7 +245,6 @@ HIV_NAs &lt;- ggplot(
   y = "Region")
   
 </code></pre>
-</div>
 
 
 <div id="create-a-plot" class="section level3">
@@ -267,7 +262,6 @@ mortality_change &lt;- wb_hiv_lifeExp_final %>%
   arrange(mortality_rate) %>% 
   tail(5) 
 </code></pre>
-</div>
 
 <div id="create-a-plot" class="section level3">
 <p> Is there a relationship between primary school enrollment and fertility rate? </p>
@@ -283,8 +277,13 @@ mortality_change &lt;- wb_hiv_lifeExp_final %>%
   scale_x_log10()
 
 </code></pre>
-</div>
 
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 </div>
