@@ -77,18 +77,91 @@
                                 <h1>COVID-19 Death Rates Analysis</h1>
                             </header>
                             
-                                <span class="image main"><img src="/img/pic03.jpg" alt="" /></span>
+                                <span class="image main"><img src="/img/Pic_006.jpg" alt="" /></span>
                             
-                            <p>Nullam et orci eu lorem consequat tincidunt vivamus et sagittis magna sed nunc rhoncus condimentum sem. In efficitur ligula tate urna. Maecenas massa sed magna lacinia magna pellentesque lorem ipsum dolor. Nullam et orci eu lorem consequat tincidunt. Vivamus et sagittis tempus.</p>
+
+<div id="COVID-19" class="section level1">
+<h1>Load the CDC Covid-19 Case Surveillance Data</h1>
+<p>Load the necessary data <a href="https://data.cdc.gov/api/views/vbim-akqf/rows.csv?accessType=DOWNLOAD"> here.</a></p>
+
+<pre class="r"><code># CDC Covid-19 Case Surveillance Data
+url &lt;- "https://data.cdc.gov/api/views/vbim-akqf/rows.csv?accessType=DOWNLOAD"
+
+covid_data &lt;- read_csv(url)%>% 
+  clean_names()
+</code></pre>
+
+<div id="plot-1" class="section level2">
+<h2>Plot of the death rate by age group, sex, and whether the patient was admited to Intensive Care Unit (ICU) or not.</h2>
+<pre class="r"><code>covid_data_tidy &lt;- covid_data %>% 
+  filter(!medcond_yn %in% c("Missing", "Unknown")) %>% 
+  filter(!sex %in% c("Missing", "Unknown", "Other", NA)) %>% 
+  filter(!age_group %in% c("Missing", "Unknown", "Other")) %>% 
+  mutate(death_rate_binary = case_when(death_yn == "Yes" ~ 1, 
+                                       TRUE ~ 0)) %>%
+  group_by(age_group, sex, medcond_yn) %>% 
+  summarise(death_percent = mean(death_rate_binary)*100) %>% 
+  ungroup()</code>
+</pre><pre><code>## Rows: 36
+## Columns: 4
+## $ age_group     &lt;chr&lt; "0 - 9 Years", "0 - 9 Years", "0 - 9 Years", "0 - 9 Years", "10 - 19 Years", "10 - 19 Years", "10 - 19 Years", "10 - 19 Years", "20 -…
+## $ sex           &lt;chr&lt; "Female", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Female", "Female", "Male…
+## $ medcond_yn    &lt;chr&lt; "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No", "Yes", "No…
+## $ death_percent &lt;dbl&lt; 0.03702789, 0.16764459, 0.05969436, 0.14616322, 0.01603206, 0.10909701, 0.01791312, 0.14968659, 0.01344577, 0.24258429, 0.06025004, 0…
+</code></pre>
+
+<pre class="r"><code>covid_plot_data &lt;- covid_data_tidy %>%  
+  mutate(comorbidities = case_when(medcond_yn == "Yes" ~ "With Comorbidities", 
+                            TRUE ~ "Without Comorbidities"))
+
+  covid_plot &lt;- ggplot(covid_plot_data) +
+  geom_bar(aes(death_percent,  age_group), stat = "identity", fill = "#4863A0", alpha = 0.8) + 
+  geom_text(aes(death_percent, y = age_group, label = round(death_percent, 1)), hjust = -0.1,  size = 3) + 
+  facet_grid(comorbidities ~  sex) +
+    labs(x = "", 
+    y = "", 
+    title = "Covid death % by age group, sex and presence of co-morbidities") + 
+   theme_bw() +
+   theme(plot.title = element_text(size=11)) </code></pre>
+<span class="image main"><img src="/img/covid.jpg" alt="" /></span>
+
+</div>
+
+<div id="create-a-plot" class="section level3">
+<p> Death Rate by age group, sex, and whether the patient was admited to Intensive Care Unit (ICU) or not. </p>
+<pre class="r"><code>covid_data %>% 
+  mutate(death_rate_binary = case_when(death_yn == "Yes" ~ 1, 
+                                       TRUE ~ 0)) %>%
+  group_by(age_group, sex, icu_yn) %>% 
+  summarise(death_percent = mean(death_rate_binary)*100) %>% 
+  ungroup() %>% 
+  filter(!icu_yn %in% c("Missing", "Unknown")) %>% 
+  filter(!sex %in% c("Missing", "Unknown", "Other", NA)) %>% 
+  filter(!age_group %in% c("Missing", "Unknown", "Other")) %>% 
+  mutate(icu_admitted = case_when(icu_yn == "Yes" ~ "Admitted to ICU", 
+                            TRUE ~ "NO ICU")) %>% 
+  ggplot() +
+  geom_bar(aes(death_percent,  age_group), stat = "identity", fill = "#E77471", alpha = 0.8) + 
+  geom_text(aes(death_percent, y = age_group, label = round(death_percent, 1)), hjust = -0.1,  size = 3) + 
+  facet_grid(icu_admitted ~  sex) + 
+  labs(
+    x = "", 
+    y = "", 
+    title = "Covid death % by age group, sex and whether patient was admitted to ICU") + 
+   theme_bw() + 
+     theme(plot.title = element_text(size=11))
+</code></pre>
+<span class="image main"><img src="/img/gpmd0.jpg" alt="" /></span>
+
+</div>
+</div>
 
                         </div>
                     </section>
             <!-- Disqus Inject -->
                 
             </div>
-            
-        <!-- Footer -->
-            
+        
                 <!-- Footer -->
     <footer id="footer">
         <div class="inner">
