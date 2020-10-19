@@ -153,7 +153,7 @@ wb_hiv_lifeExp_final &lt;- wb_hiv_lifeExp_countries %>%
          gdpPercap = NY.GDP.PCAP.KD)
 
 glimpse(wb_hiv_lifeExp_final)</code>
-</pre><pre><code>##Rows: 12,369
+</pre><pre><code>## Rows: 12,369
 ## Columns: 13
 ## $ iso3c           &lt;chr&lt; "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW"…
 ## $ year            &lt;dbl&lt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981,…
@@ -189,7 +189,7 @@ glimpse(wb_hiv_lifeExp_final)</code>
 
 hiv_lifeExp_relationship 
 </code></pre>
-<span class="image main"><img src="/img/gpmd1.jpg" alt="" /></span>
+<span class="image main"><img src="/img/gpmd0.jpg" alt="" /></span>
 
 </div>
 
@@ -210,23 +210,9 @@ hiv_lifeExp_relationship
 fertilityGdp_relationship
 </code></pre>
 
-<div id="create-a-plot" class="section level3">
-<p> What is the relationship between HIV prevalence and life expectancy? </p>
-<pre class="r"><code>hiv_lifeExp_relationship &lt;- ggplot(
-  data = wb_hiv_lifeExp_final,
-  mapping=aes(
-    x=hiv,
-    y=life_expectancy, color = hiv))+
-    geom_point()+
-  geom_smooth()+
-  labs(x = &#39;HIV Prevalence&#39;,
-  y = &#39;Life Expectancy&#39;, color=&#39;HIV&#39;)+
-  scale_y_continuous(expand = c(0, 0), limits = c(0, 100))+
-  scale_x_log10()+
-  facet_wrap(~region)
+<span class="image main"><img src="/img/gpmd1.jpg" alt="" /></span>
 
-hiv_lifeExp_relationship 
-</code></pre>
+</div>
 
 <div id="create-a-plot" class="section level3">
 <p> Which regions have the most observations with missing HIV data?  </p>
@@ -246,22 +232,9 @@ HIV_NAs &lt;- ggplot(
   
 </code></pre>
 
+<span class="image main"><img src="/img/gpmd2.jpg" alt="" /></span>
 
-<div id="create-a-plot" class="section level3">
-<p> How has mortality rate for under 5 changed by region? </p>
-<pre class="r"><code>mortality_change &lt;- wb_hiv_lifeExp_final %>%
-  group_by(country) %>% 
-  mutate(year = as.Date(year, format = "%Y"),
-         year = year(year)) %>% 
-  mutate(mortality_rate2 = mortality_rate[year="2016"] - mortality_rate[year="1960"]) %>%
-  arrange(mortality_rate2) %>% 
-  head(5) 
-
-mortality_change &lt;- wb_hiv_lifeExp_final %>%
-  group_by(country) %>% 
-  arrange(mortality_rate) %>% 
-  tail(5) 
-</code></pre>
+</div>
 
 <div id="create-a-plot" class="section level3">
 <p> Is there a relationship between primary school enrollment and fertility rate? </p>
@@ -277,13 +250,11 @@ mortality_change &lt;- wb_hiv_lifeExp_final %>%
   scale_x_log10()
 
 </code></pre>
+<span class="image main"><img src="/img/gpmd3.jpg" alt="" /></span>
 
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+
 
 
 </div>
