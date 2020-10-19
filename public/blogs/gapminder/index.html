@@ -14,6 +14,9 @@
 	<link rel="stylesheet" href="/css/main.css"/>
 	
 
+
+
+
 	<!-- Custom Fonts -->
 	<link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -57,14 +60,6 @@
             
 
         </ul>
-        <ul class="actions vertical">
-            
-                <li><a href="/blogs" class="button special fit">Check it out!</a></li>
-            
-            
-                <li><a href="/" class="button fit">Log In</a></li>
-            
-        </ul>
     </nav>
 
         <!-- Main -->
@@ -77,27 +72,46 @@
                                 <h1>Gapminder Revisited</h1>
                             </header>
                             
-                                 <span class="image main"><img src="static/img/blogs/pic10.jpeg" alt="" /></span>
+                                 <span class="image main"><img src="/img/blogs/pic10.jpg" alt="" /></span>
 
 
 <div id="gapminder-revisited" class="section level1">
 <h1>Load the Gapminder Data Set</h1>
-<p>Load the necessary data <a href=" gapminder package. That data frame contains just six columns from the larger [data in Gapminder World](https://www.gapminder.org/data/"> here.</a></p>
+<p>Load the necessary data <a href="https://www.gapminder.org/data/"> here.</a></p>
 
-<pre class="r"><code># Load data from Gapminder and World Bank Webstats.
-
+<pre class="r"><code># Load the Gapminder data.
 hiv &lt;- read_csv(here::here(&#39;data&#39;,&#39;adults_with_hiv_percent_age_15_49.csv&#39;))
 
 life_expectancy &lt;- read_csv(here::here(&#39;data&#39;,&#39;life_expectancy_years.csv&#39;))
 
 indicators &lt;- c(&#39;SP.DYN.TFRT.IN&#39;,&#39;SE.PRM.NENR&#39;, &#39;SH.DYN.MORT&#39;, &#39;NY.GDP.PCAP.KD&#39;)
 
+# Load the World Bank Webstats data.
 library(wbstats)
 
 worldbank_data &lt;- read_csv(here::here(&#39;data&#39;,&#39;worldbank_data.csv&#39;))
 
 countries &lt;-  wbstats::wb_cachelist$countries
 </code></pre>
+Rows: 12,369
+Columns: 13
+$ iso3c           &lt;chr&lt; "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW", "ABW"…
+$ year            &lt;dbl&lt; 1960, 1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, 1971, 1972, 1973, 1974, 1975, 1976, 1977, 1978, 1979, 1980, 1981,…
+$ fertility_rate  &lt;dbl&lt; 4.820, 4.655, 4.471, 4.271, 4.059, 3.842, 3.625, 3.417, 3.226, 3.054, 2.908, 2.788, 2.691, 2.613, 2.552, 2.506, 2.472, 2.446, 2.425…
+$ school_enrol    &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ mortality_rate  &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ gdpPercap       &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, 15669.62, 18427.61, 22134.0…
+$ life_expectancy &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ hiv             &lt;dbl&lt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ country         &lt;chr&lt; "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Aruba", "Arub…
+$ capital_city    &lt;chr&lt; "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oranjestad", "Oran…
+$ region          &lt;chr&lt; "Latin America & Caribbean", "Latin America & Caribbean", "Latin America & Caribbean", "Latin America & Caribbean", "Latin America …
+$ income_level    &lt;chr&lt; "High income", "High income", "High income", "High income", "High income", "High income", "High income", "High income", "High incom…
+$ lending_type    &lt;chr&lt; "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not classified", "Not …
+
+
+
+
 
 <div id="tidy-the-date" class="section level2">
 <h2>Tidy the Data</h2>
