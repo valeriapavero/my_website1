@@ -110,6 +110,12 @@ disqusShortname = ""
       image = "blogs/Pic_006.jpg"
       url = "blogs/COVID19"
 
+[[params.tiles.showcase]]
+      title = "Trump Approval Rate"
+      subtitle = "Trump's Approval Margins over Time"
+      image = "blogs/Pic_008.jpg"
+      url = "blogs/Trump"
+
     [[params.tiles.showcase]]
       title = "Resume"
       subtitle = "Education and Work Experience"

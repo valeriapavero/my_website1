@@ -76,8 +76,7 @@
 
 
 <div id="gapminder-revisited" class="section level1">
-<h1>Load the Gapminder Data Set</h1>
-<p>Load the necessary data <a href="https://www.gapminder.org/data/"> here.</a></p>
+<p>Load the Gapminder Data Set <a href="https://www.gapminder.org/data/"> here.</a></p>
 
 <pre class="r"><code># Load the Gapminder data.
 hiv &lt;- read_csv(here::here(&#39;data&#39;,&#39;adults_with_hiv_percent_age_15_49.csv&#39;))
@@ -95,7 +94,7 @@ countries &lt;-  wbstats::wb_cachelist$countries
 </code></pre>
 
 <div id="tidy-the-date" class="section level2">
-<h2>Tidy the Data</h2>
+<h2>Plot the Gapminder Data Set</h2>
 <pre class="r"><code>hiv_tidy &lt;- hiv %>% 
   pivot_longer(!country, names_to = "year", values_to = "hiv")
 
