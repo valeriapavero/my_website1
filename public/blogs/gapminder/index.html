@@ -199,7 +199,77 @@ fertilityGdp_relationship
 </code></pre>
 </div>
 
+<div id="create-a-plot" class="section level3">
+<p> What is the relationship between HIV prevalence and life expectancy? </p>
+<pre class="r"><code>hiv_lifeExp_relationship &lt;- ggplot(
+  data = wb_hiv_lifeExp_final,
+  mapping=aes(
+    x=hiv,
+    y=life_expectancy, color = hiv))+
+    geom_point()+
+  geom_smooth()+
+  labs(x = &#39;HIV Prevalence&#39;,
+  y = &#39;Life Expectancy&#39;, color=&#39;HIV&#39;)+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 100))+
+  scale_x_log10()+
+  facet_wrap(~region)
 
+hiv_lifeExp_relationship 
+</code></pre>
+</div>
+
+<div id="create-a-plot" class="section level3">
+<p> Which regions have the most observations with missing HIV data?  </p>
+<pre class="r"><code>Hiv_na &lt;- wb_hiv_lifeExp_final %>% 
+ mutate(count_na = sum(is.na(hiv))) %>% 
+  group_by(region) 
+
+
+HIV_NAs &lt;- ggplot(
+  data=Hiv_na,
+  mapping=aes(
+    x=count_na, 
+    y=region))+
+    geom_col()+
+  labs(x ="Missing Observations",
+  y = "Region")
+  
+</code></pre>
+</div>
+
+
+<div id="create-a-plot" class="section level3">
+<p> How has mortality rate for under 5 changed by region? </p>
+<pre class="r"><code>mortality_change &lt;- wb_hiv_lifeExp_final %>%
+  group_by(country) %>% 
+  mutate(year = as.Date(year, format = "%Y"),
+         year = year(year)) %>% 
+  mutate(mortality_rate2 = mortality_rate[year="2016"] - mortality_rate[year="1960"]) %>%
+  arrange(mortality_rate2) %>% 
+  head(5) 
+
+mortality_change &lt;- wb_hiv_lifeExp_final %>%
+  group_by(country) %>% 
+  arrange(mortality_rate) %>% 
+  tail(5) 
+</code></pre>
+</div>
+
+<div id="create-a-plot" class="section level3">
+<p> Is there a relationship between primary school enrollment and fertility rate? </p>
+<pre class="r"><code>primEnrll_fertility &lt;- ggplot(
+  data=wb_hiv_lifeExp_final,
+  mapping=aes(
+    x=school_enrol,
+    y=fertility_rate, color = fertility_rate))+
+    geom_point()+
+  labs(x ="Primary School Enrollment",
+  y = "Fertility Rate", color="Fertility Rate")+
+  geom_smooth()+
+  scale_x_log10()
+
+</code></pre>
+</div>
 
 
 
