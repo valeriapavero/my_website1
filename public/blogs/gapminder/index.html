@@ -77,7 +77,7 @@
                                 <h1>Gapminder Revisited</h1>
                             </header>
                             
-                                 <span class="image main"><img src="/img/blogs/pic10.jpeg" alt="" /></span>
+                                 <span class="image main"><img src="pic10.jpeg" alt="" /></span>
 
 
 <div id="gapminder-revisited" class="section level1">
@@ -124,14 +124,14 @@ country_code &lt;- hiv_lifeExp %>%
 
 countrycodes &lt;- country_code %>% 
   countrycode(
-    origin = "country.name",
-    destination = "iso3c")
+    origin = &#39;country.name&#39;,
+    destination = &#39;iso3c&#39;)
 
 countrycode_match &lt;- tibble(
   country = country_code, 
   iso3c = countrycodes)
 
-hiv_lifeExp_tidy &lt;- left_join(hiv_lifeExp, countrycode_match, by = "country")
+hiv_lifeExp_tidy &lt;- left_join(hiv_lifeExp, countrycode_match, by = &#39;country&#39;)
   
 #Check for primary keys before joining
 hiv_lifeExp_tidy %>% 
@@ -143,8 +143,8 @@ worldbank_tidy %>%
   filter(n>1)
 
 #Joining dataframes
-wb_hiv_lifeExp &lt;- full_join(worldbank_tidy, hiv_lifeExp_tidy, by = c("iso3c","year"))
-wb_hiv_lifeExp_countries &lt;- left_join(wb_hiv_lifeExp, countries_tidy, by = "iso3c")
+wb_hiv_lifeExp &lt;- full_join(worldbank_tidy, hiv_lifeExp_tidy, by = c(&#39;iso3c&#39;,&#39;year&#39;))
+wb_hiv_lifeExp_countries &lt;- left_join(wb_hiv_lifeExp, countries_tidy, by = &#39;iso3c&#39;)
 
 #Tidy final data frame
 wb_hiv_lifeExp_final &lt;- wb_hiv_lifeExp_countries %>% 
@@ -171,8 +171,8 @@ glimpse(wb_hiv_lifeExp_final)
     y=life_expectancy, color = hiv))+
     geom_point()+
   geom_smooth()+
-  labs(x = "HIV Prevalence",
-  y = "Life Expectancy", color="HIV")+
+  labs(x = &#39;HIV Prevalence&#39;,
+  y = &#39;Life Expectancy&#39;, color=&#39;HIV&#39;)+
   scale_y_continuous(expand = c(0, 0), limits = c(0, 100))+
   scale_x_log10()+
   facet_wrap(~region)
@@ -189,8 +189,8 @@ hiv_lifeExp_relationship
     x=gdpPercap,
     y=fertility_rate, color = fertility_rate))+
     geom_point()+
-  labs(x ="GDP per Capita",
-  y = "Fertility Rate", color="Fertility Rate")+
+  labs(x =&#39;GDP per Capita&#39;,
+  y = &#39;Fertility Rate&#39;, color=&#39;Fertility Rate&#39;)+
   geom_smooth()+
   scale_x_log10()+
   facet_wrap(~region)
